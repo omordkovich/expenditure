@@ -19,7 +19,10 @@ public class ExpenseImpl implements Expense {
 
     @Override
     public boolean addExpense(Expenditure expenditure) {
-        return false;
+        if (expenditure == null || expenditures.contains(expenditure))
+            return false;
+        expenditures.add(expenditure);
+        return true;
     }
 
 
