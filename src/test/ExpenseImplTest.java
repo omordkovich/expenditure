@@ -4,6 +4,7 @@ package test;
 import dao.Expense;
 import dao.ExpenseImpl;
 import model.Expenditure;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ class ExpenseImplTest {
     Expense expense;
     List<Expenditure> expenseList;
 
+    @BeforeEach
     void setUp() {
         expense = new ExpenseImpl();
         expenseList = new ArrayList<>(List.of(
@@ -27,20 +29,24 @@ class ExpenseImplTest {
         expenseList.forEach(expense::addExpense);
     }
 
+    @Test
     void addExpense() {
 
     }
-
     @Test
     void removeExpense() {
 
     }
-
     @Test
     void updateExpense() {
+        int idToUpdate = expenseList.get(0).getId();
+        Expenditure updatedExpense = new Expenditure("products", 10.0);
+        updatedExpense.setId(idToUpdate);
+        expense.updateExpense(updatedExpense);
+        Expenditure result = expenseList.stream().filter(exp -> exp.getId() == idToUpdate).findFirst().orElse(null);
+
 
     }
-
     @Test
     void expenseByCategory() {
 
