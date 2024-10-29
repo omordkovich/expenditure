@@ -4,6 +4,8 @@ package test;
 import dao.Expense;
 import dao.ExpenseImpl;
 import model.Expenditure;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExpenseImplTest {
     Expense expense;
     List<Expenditure> expenseList;
-
+    @BeforeEach
     void setUp() {
         expense = new ExpenseImpl();
         expenseList = new ArrayList<>(List.of(
@@ -27,12 +29,25 @@ class ExpenseImplTest {
         expenseList.forEach(expense::addExpense);
     }
 
+    @Test
     void addExpense() {
-
+        // Проверяем добавления null
+        assertFalse(expense.addExpense(null));
+        // Проверяем добавление уже существующего объекта
+        Expenditure duplicateExpense = expenseList.get(3);
+        assertFalse(expense.addExpense(duplicateExpense));
+        // Проверяем добавление нового объекта
+        Expenditure newExpense = new Expenditure("fun", 75);
+        assertTrue(expense.addExpense(newExpense));
     }
 
     @Test
     void removeExpense() {
+        // Удаление существующего объекта
+        Expenditure existingExpense = expenseList.get(0);
+        assertTrue(expense.removeExpense(existingExpense));
+        assertFalse(expe);
+
 
     }
 
