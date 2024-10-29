@@ -44,16 +44,16 @@ class ExpenseImplTest {
     @Test
     void removeExpense() {
         // Удаление существующего объекта
-        Expenditure existingExpense = expenseList.get(0);
+        Expenditure existingExpense = expenseList.getFirst();
         // Удаление объекта которого нет в списке
         Expenditure nonExistentExpense = new Expenditure("dining", 20);
-        assertEquals(null, expense.removeExpense(nonExistentExpense.getId()));
+        assertNull(expense.removeExpense(nonExistentExpense.getId()));
         // Удаление существующего объекта
         assertEquals(2, expense.removeExpense(2).getId());
     }
     @Test
     void updateExpense() {
-        int idToUpdate = expenseList.get(0).getId();
+        int idToUpdate = expenseList.getFirst().getId();
         Expenditure updatedExpense = new Expenditure("products", 10.0);
         updatedExpense.setId(idToUpdate);
         expense.updateExpense(updatedExpense);
