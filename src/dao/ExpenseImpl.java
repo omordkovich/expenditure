@@ -25,10 +25,15 @@ public class ExpenseImpl implements Expense {
         return true;
     }
 
-
     @Override
     public Expenditure removeExpense(int id) {
-        return null;
+        Expenditure victim = findById(id);
+        if(expenditures.contains(victim)&&victim!=null){
+            expenditures.remove(victim);
+            return victim;
+        }else {
+            return null;
+        }
     }
 
     @Override
@@ -45,4 +50,14 @@ public class ExpenseImpl implements Expense {
     public void printExpenditure() {
 
     }
+
+    @Override
+    public Expenditure findById(int id) {
+        return expenditures.stream()
+                .filter(e -> e.getId() == (id))
+                .findFirst()
+                .orElse(null);
+    }
+
+
 }
