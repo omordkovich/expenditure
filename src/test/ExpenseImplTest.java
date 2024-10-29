@@ -70,7 +70,5 @@ class ExpenseImplTest {
 
         assertEquals(0, productsExpenses.size());
 
-
-
     }
 }
