@@ -45,10 +45,11 @@ class ExpenseImplTest {
     void removeExpense() {
         // Удаление существующего объекта
         Expenditure existingExpense = expenseList.get(0);
-        assertTrue(expense.removeExpense(existingExpense));
-        assertFalse(expe);
-
-
+        // Удаление объекта которого нет в списке
+        Expenditure nonExistentExpense = new Expenditure("dining", 20);
+        assertEquals(null, expense.removeExpense(nonExistentExpense.getId()));
+        // Удаление существующего объекта
+        assertEquals(2, expense.removeExpense(2).getId());
     }
     @Test
     void updateExpense() {
@@ -62,6 +63,13 @@ class ExpenseImplTest {
     }
     @Test
     void expenseByCategory() {
+        List<Expenditure> allExpenses = expense.expenseByCategory();
+
+        List<Expenditure> productsExpenses = allExpenses.stream()
+                .filter(e -> "products".equalsIgnoreCase(e.getCategory()))
+                .toList();
+
+        assertEquals(0, productsExpenses.size());
 
     }
 }
