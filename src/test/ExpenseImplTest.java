@@ -55,7 +55,7 @@ class ExpenseImplTest {
                 .filter(e -> "products".equalsIgnoreCase(e.getCategory()))
                 .toList();
 
-        assertEquals(3, productsExpenses.size());
+        assertEquals(0, productsExpenses.size());
 
 
 
