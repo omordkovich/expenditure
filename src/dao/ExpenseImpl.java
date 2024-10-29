@@ -28,17 +28,25 @@ public class ExpenseImpl implements Expense {
     @Override
     public Expenditure removeExpense(int id) {
         Expenditure victim = findById(id);
-        if(expenditures.contains(victim)&&victim!=null){
+        if (expenditures.contains(victim) && victim != null) {
             expenditures.remove(victim);
             return victim;
-        }else {
+        } else {
             return null;
         }
     }
 
     @Override
     public Expenditure updateExpense(Expenditure expenditure) {
-        return null;
+        return expenditures.stream()
+                .filter(e -> e.getId() == expenditure.getId())
+                .findFirst()
+                .map(e1 -> {
+                    e1.setCategory(expenditure.getCategory());
+                    e1.setMoney(expenditure.getMoney());
+                    return e1;
+                })
+                .orElse(null);
     }
 
     @Override
@@ -48,7 +56,7 @@ public class ExpenseImpl implements Expense {
 
     @Override
     public void printExpenditure() {
-
+        expenditures.forEach(e -> System.out.println(e));
     }
 
     @Override
@@ -58,6 +66,4 @@ public class ExpenseImpl implements Expense {
                 .findFirst()
                 .orElse(null);
     }
-
-
 }
