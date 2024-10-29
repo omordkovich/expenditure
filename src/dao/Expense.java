@@ -19,4 +19,6 @@ public interface Expense {
 
     //prints
     void printExpenditure();
+    //find by id
+    Expenditure findById(int id);
 }
