@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Expenditure {
+public class Expenditure implements Comparable<Expenditure>, Serializable {
     private static int idCounter = 0;
     private int id;
     private String category;
@@ -75,5 +76,10 @@ public class Expenditure {
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    @Override
+    public int compareTo(Expenditure o) {
+        return Double.compare(this.money, o.money);
     }
 }
