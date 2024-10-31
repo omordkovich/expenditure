@@ -15,7 +15,7 @@ public interface Expense {
     Expenditure updateExpense(Expenditure expenditure);
 
     //returns list of total expenses by category
-    List<Expenditure> expenseByCategory();
+    List<Expenditure> expenseByCategory(String category);
 
     //prints
     void printExpenditure();
