@@ -4,6 +4,7 @@ import model.Expenditure;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExpenseImpl implements Expense {
     List<Expenditure> expenditures;
@@ -50,8 +51,16 @@ public class ExpenseImpl implements Expense {
     }
 
     @Override
-    public List<Expenditure> expenseByCategory() {
-        return List.of();
+    public List<Expenditure> expenseByCategory(String category) {
+        if(category == null || category.isEmpty()){
+            return List.of();
+        }
+        return expenditures.stream()
+                .filter(expenditure ->
+                        category.equalsIgnoreCase(expenditure.getCategory()))
+                .toList();
+
+
     }
 
     @Override
