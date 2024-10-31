@@ -2,10 +2,12 @@ package dao;
 
 import model.Expenditure;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ExpenseImpl implements Expense {
+public class ExpenseImpl implements Expense, Serializable {
     List<Expenditure> expenditures;
 
     public ExpenseImpl() {
@@ -50,8 +52,16 @@ public class ExpenseImpl implements Expense {
     }
 
     @Override
-    public List<Expenditure> expenseByCategory() {
-        return List.of();
+    public List<Expenditure> expenseByCategory(String category) {
+        if(category == null || category.isEmpty()){
+            return List.of();
+        }
+        return expenditures.stream()
+                .filter(expenditure ->
+                        category.equalsIgnoreCase(expenditure.getCategory()))
+                .toList();
+
+
     }
 
     @Override
@@ -65,5 +75,13 @@ public class ExpenseImpl implements Expense {
                 .filter(e -> e.getId() == (id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public int findMaxID() {
+        return expenditures.stream()
+                .mapToInt(Expenditure::getId)
+                .max()
+                .orElse(0);
     }
 }

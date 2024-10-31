@@ -63,13 +63,13 @@ class ExpenseImplTest {
     }
     @Test
     void expenseByCategory() {
-        List<Expenditure> allExpenses = expense.expenseByCategory();
+        List<Expenditure> allExpenses = expense.expenseByCategory("products");
 
         List<Expenditure> productsExpenses = allExpenses.stream()
                 .filter(e -> "products".equalsIgnoreCase(e.getCategory()))
                 .toList();
 
-        assertEquals(0, productsExpenses.size());
+        assertEquals(3, productsExpenses.size());
 
     }
 }
