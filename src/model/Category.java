@@ -1,6 +1,8 @@
 package model;
 
-public enum Category {
+import java.io.Serializable;
+
+public enum Category implements Serializable {
     PRO("(1) Products | "),
     TRA("(2) Transport | "),
     FUN("(3) Fun\n");

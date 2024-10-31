@@ -21,4 +21,6 @@ public interface Expense {
     void printExpenditure();
     //find by id
     Expenditure findById(int id);
+
+    int findMaxID();
 }
