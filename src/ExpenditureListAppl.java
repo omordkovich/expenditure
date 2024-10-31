@@ -50,20 +50,21 @@ public class ExpenditureListAppl implements Serializable {
                     list.addExpense(newExp);
                 }
                 case "2" -> {
-                    System.out.println("Enter task ID to remove: ");
+                    System.out.println("Enter ID to remove the note: ");
                     input = scanner.next();
                     try {
                         if (list.findById(Integer.parseInt(input)) != null) {
                             System.out.println(list.removeExpense(Integer.parseInt(input)) + " was found!");
                         } else {
-                            System.out.println("No task with ID: " + input + " was found");
+                            System.out.println("No note with ID: " + input + " was found");
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid input. Try again!");
                     }
                 }
 
-//                case "3" -> {
+                case "3" -> {
+                    System.out.println("The feature is under construction");
 //                    System.out.println("Enter task ID of task you want to edit: ");
 //                    input = scanner.next();
 //                    try {
@@ -79,7 +80,7 @@ public class ExpenditureListAppl implements Serializable {
 //                    } catch (NumberFormatException e) {
 //                        System.out.println("Invalid input. Try again!");
 //                    }
-//                }
+                }
                 case "4" -> {
                     System.out.println("Your List:");
                     list.printExpenditure();
