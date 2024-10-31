@@ -46,11 +46,36 @@ public class ExpenditureListAppl {
                     list.addExpense(newExp);
                 }
                 case "2" -> {
-
+                    System.out.println("Enter task ID to remove: ");
+                    input = scanner.next();
+                    try {
+                        if (list.findById(Integer.parseInt(input)) != null) {
+                            System.out.println(list.removeExpense(Integer.parseInt(input)) + " was found!");
+                        } else {
+                            System.out.println("No task with ID: " + input + " was found");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Try again!");
+                    }
                 }
-                case "3" -> {
 
-                }
+//                case "3" -> {
+//                    System.out.println("Enter task ID of task you want to edit: ");
+//                    input = scanner.next();
+//                    try {
+//                        if (list.findById(Integer.parseInt(input)) != null) {
+//                            System.out.println("Enter new task: ");
+//                            scanner.nextLine();
+//                            String newTask = scanner.nextLine();
+//
+//                            list.updateExpense();
+//                        } else {
+//                            System.out.println("No task with ID: " + input + " was found!");
+//                        }
+//                    } catch (NumberFormatException e) {
+//                        System.out.println("Invalid input. Try again!");
+//                    }
+//                }
                 case "4" -> {
                     System.out.println("Your List:");
                     list.printExpenditure();
